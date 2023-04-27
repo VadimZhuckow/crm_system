@@ -7,6 +7,9 @@ class Db
     public $login;
     public $table_name;
 
+    public $limit;
+    public $ofset;
+
     public function __construct()
     {
         $this->mysql = mysqli_connect('localhost', 'root', '0000', 'users');
@@ -43,6 +46,18 @@ class Db
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
+            }
+        }
+        return $data;
+    }
+
+    public function ofpage(){
+
+        $request = "SELECT * FROM {$this->table_name} LIMIT {$this->limit} OFFSET {$this->ofset}";
+        $result = $this->mysql->query($request);
+        if($result->num_rows>0){
+            while($row = $result->fetch_assoc()){
+                $data[]=$row;
             }
         }
         return $data;

@@ -10,7 +10,7 @@ class Generator_on
     
 
     $x=0;
-    $max=10;
+    $max=100;
     while($x<$max){
        
     $project_name = "project №{$x}";

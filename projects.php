@@ -39,7 +39,9 @@ require_once "./includes/nav.php"
         <?php
         $projects = new Db;
         $projects->table_name = 'projects';
-        $project_all = $projects->getAll();
+        $projects->limit = 10;
+        $projects->ofset = 5;
+        $project_all = $projects->ofpage();
         foreach ($project_all as $proj) {
             echo "<tr>";
             echo "<td>{$proj['id']}</td>";
@@ -48,10 +50,6 @@ require_once "./includes/nav.php"
 
         }
         ?>
-
-
-
-    </table>
+        </table>
 </body>
-
 </html>
