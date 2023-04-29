@@ -5,7 +5,7 @@
     }
 
     nav {
-        background-color: #ababab;
+        background-color: #6310b5;
         padding: 17px;
         text-align: center;
         margin-bottom: 50px;
