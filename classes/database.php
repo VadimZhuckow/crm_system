@@ -67,4 +67,20 @@ class Db
         }
         return $date;
     }
+
+    public function getAllByLike($table_name, $td, $like)
+    {
+        $request = "SELECT * FROM {$table_name} WHERE {$td} LIKE '{$like}%' ";
+        $result  = $this->mysql->query($request);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        } else {
+            $data = [];
+        }
+
+        return $data;
+    }
 }

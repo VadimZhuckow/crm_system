@@ -39,7 +39,7 @@ require_once "./includes/nav.php"
 <body>
     <h3>Проекты</h3>
     <a href="./project_add.php">Добавить проект</a><br>
-    <input class="search" type="text" placeholder="Поиск проекта">
+    <input class="f-title" type="text" placeholder="Поиск проекта">
     <div class="result">
         <table>
             <tr>
@@ -61,6 +61,9 @@ require_once "./includes/nav.php"
                 $offset -= $max_posts;
                 $request = "SELECT * FROM projects LIMIT {$max_posts} OFFSET {$offset}";
                 $result = (new Db)->mysql->query($request);
+
+
+
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $project_all[] = $row;
@@ -89,4 +92,14 @@ require_once "./includes/nav.php"
 
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    $(document).on("keyup", ".f-title", function () {
+        var title = $(this).val();
+
+        $.get("ajax.php", {title}, function (res) {
+            $('.result').html(res);
+        });
+    });
+</script>
 </html>
